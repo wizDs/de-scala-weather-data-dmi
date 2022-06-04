@@ -11,7 +11,7 @@ class DmiClient(
     ],
     serviceVersion: String = "v2"
 ) {
-  assert(apiKey.isDefined)
+  assert(apiKey.isDefined, "API key must be defines as an environment variable")
   val serverName = "https://dmigw.govcloud.dk"
 
   def getClimateData(
