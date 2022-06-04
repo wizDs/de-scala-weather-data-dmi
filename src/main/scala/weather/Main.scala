@@ -21,13 +21,12 @@ object Main {
     val dmiClient = new DmiClient(apiKey, backend)
 
     var params = Parameters.readEnvVariables()
-    println(params)
     val climateData = dmiClient.getClimateData(params.toMap)
     val properties =
       Response.getProperties(climateData, List("calculatedAt", "value"))
 
     val serialized = ujson.write(climateData)
-    val filename = "test2.gz"
+    val filename = "data.gz"
     val target = new BufferedOutputStream(new FileOutputStream(filename))
     val gzip = new GZIPOutputStream(target)
     gzip.write(serialized.getBytes())

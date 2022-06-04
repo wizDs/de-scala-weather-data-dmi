@@ -28,7 +28,8 @@ object Response {
       .map(x => Map("calculatedAt" -> x("calculatedAt"), "value" -> x("value")))
       .toList
       // .map(x => {propertyNames.foreach(p => properties += (p -> x(p)))})
-      
+      // TODO: Get properties from list
+
     return dataPoints
   }
 }
