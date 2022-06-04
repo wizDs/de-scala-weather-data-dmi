@@ -1,0 +1,7 @@
+export START_DATE="2022-01-01T00:00:00+02:00"
+export END_DATE="2022-01-02T00:00:00+02:00"
+export LIMIT="10"
+export STATION_ID="06170"
+export COLLECTION="stationValue"
+export PARAMETER_ID="mean_temp"
+export TIME_RESOLUTION="hour"
