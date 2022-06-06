@@ -1,5 +1,6 @@
 package weather
 
+/* An Enum defining all weather params except datetime */
 object ClimateParameterNames extends Enumeration {
   protected case class ClimateParameterName(dmiName: String, envName: String)
       extends super.Val

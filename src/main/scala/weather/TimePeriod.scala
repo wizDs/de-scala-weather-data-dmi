@@ -6,7 +6,12 @@ final case class DateInterval(startDate: String, endDate: String)
     extends TimePeriod
 final case class Date(date: String) extends TimePeriod
 
+
 object TimePeriod {
+  /** 
+   * Constructs an Option[TimePeriod] with an interval 
+   * determined by a start date and end date.
+   */
   def apply(
       startDate: Option[String],
       endDate: Option[String]
@@ -29,7 +34,10 @@ object TimePeriod {
     }
   }
 
-
+  /** 
+  * Constructs an Option[TimePeriod] with an interval 
+  * determined by a single date.
+  */
   def apply(date: Option[String]): Option[TimePeriod] = {
     return date match {
       case Some(date) => {

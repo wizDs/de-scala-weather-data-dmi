@@ -13,7 +13,7 @@ class DmiClient(
 ) {
   assert(apiKey.isDefined, "API key must be defines as an environment variable")
   val serverName = "https://dmigw.govcloud.dk"
-
+  
   def getClimateData(
       params: Map[String, Option[String]]
   ): ujson.Value = {

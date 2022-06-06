@@ -2,6 +2,7 @@ package weather
 import scala.collection.mutable
 
 object Parameters {
+  /* Read weather parameters from environment variables */
   def readEnvVariables(): scala.collection.mutable.Map[String, Option[String]] = {
     val params = scala.collection.mutable.Map[String, Option[String]]()
 
