@@ -28,7 +28,7 @@ How to set the dmi datetime parameter:
 - TIME_RESOLUTION
 - STATION_ID
 - LIMIT
+- COLLECTION
 - START_DATE
 - END_DATE
 - DATE
-
