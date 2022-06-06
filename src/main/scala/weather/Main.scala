@@ -25,8 +25,8 @@ object Main {
     val climateData = dmiClient.getClimateData(params.toMap)
     val properties = Response.getProperties(climateData)
 
+    val jsonString = ujson.write(properties)
+    Gzip.compress(jsonString, filename="data.gz")
     println(properties)
-    val serializedString = ujson.write(properties)
-    Gzip.compress(serializedString, filename="data.gz")
   }
 }
