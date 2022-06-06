@@ -11,6 +11,17 @@ DMI has an available REST-API: https://confluence.govcloud.dk/pages/viewpage.act
 5. run using `sbt run`
 
 ## Defining the period
+There are four ways to determine the period according to the specs in confluence.
+1. datetime = {startDate}/{endDate}
+2. datetime = ../{endDate}
+3. datetime = {startDate}/..
+4. datetime = {date}
+
+How to set the dmi datetime parameter:
+1. set START_DATE and END_DATE environment variable
+2. set START_DATE='..' and END_DATE environment variable
+3. set START_DATE and END_DATE='..' environment variable
+4. set DATE environment variable
 
 ## Parameters
 - PARAMETER_ID
