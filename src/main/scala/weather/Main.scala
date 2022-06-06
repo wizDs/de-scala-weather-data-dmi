@@ -26,7 +26,7 @@ object Main {
     val properties = Response.getProperties(climateData)
 
     println(properties)
-    val serializedString = ujson.write(climateData)
+    val serializedString = ujson.write(properties)
     Gzip.compress(serializedString, filename="data.gz")
   }
 }
