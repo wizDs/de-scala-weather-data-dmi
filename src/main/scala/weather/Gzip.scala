@@ -1,13 +1,13 @@
 package weather
 
 import scala.util.Try
+import scala.io.Source
 
 import java.util.zip.{GZIPOutputStream, GZIPInputStream}
 import java.io.BufferedOutputStream
 import java.io.BufferedInputStream
 import java.io.FileOutputStream
 import java.io.FileInputStream
-import java.io.Source
 
 /*
  *
@@ -42,7 +42,6 @@ object Gzip {
     val inputStream = new GZIPInputStream(
       new BufferedInputStream(new FileInputStream(path))
     )
-
     return Right(Source.fromInputStream(inputStream).mkString)
   }
 }
