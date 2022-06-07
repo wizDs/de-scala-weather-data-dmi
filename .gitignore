@@ -7,5 +7,5 @@ target
 .bloop
 .bsp
 docs
-apikey.sh
-data.gz
+apikey
+*data.gz

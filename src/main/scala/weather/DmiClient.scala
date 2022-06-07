@@ -4,16 +4,17 @@ import sttp.client._
 
 class DmiClient(
     apiKey: Option[String],
-    implicit val backend: SttpBackend[
+    serviceVersion: String = "v2"
+)(implicit
+    val backend: SttpBackend[
       Identity,
       Nothing,
       okhttp.WebSocketHandler
-    ],
-    serviceVersion: String = "v2"
+    ]
 ) {
   assert(apiKey.isDefined, "API key must be defines as an environment variable")
   val serverName = "https://dmigw.govcloud.dk"
-  
+
   def getClimateData(
       params: Map[String, Option[String]]
   ): ujson.Value = {
@@ -39,8 +40,8 @@ class DmiClient(
   private def getResponse(
       baseRequest: String,
       params: Map[String, Option[String]]
-  ): Identity[Response[Either[String,String]]] = {
-    
+  ): Identity[Response[Either[String, String]]] = {
+
     val uri = uri"$baseRequest?$params&api-key=$apiKey"
     val request = basicRequest.get(uri)
     return request.send()
