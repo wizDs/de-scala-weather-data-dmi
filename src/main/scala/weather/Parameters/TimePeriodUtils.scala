@@ -1,7 +1,10 @@
 package weather
 
+/* Transforms a TimePeriod (DateInterval or Date) to DMI
+ * datetime param which is nessesary since the DmiClient
+ * only inputs dmi-parameters as Option[String].
+ */
 object TimePeriodUtils {
-  /* Transforms a TimePeriod to DMI datetime param */
   def toDmiTime(t: Option[TimePeriod]): Option[String] = {
     return t match {
       case Some(DateInterval(startDate, endDate)) =>

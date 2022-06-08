@@ -24,15 +24,18 @@ object Main {
     val climateProperties = Response.getProperties(climateData)
 
     val climateJsonString = ujson.write(climateProperties)
-    Gzip.compress(climateJsonString, filename = "climate_data.gz")
+    Gzip.compress(climateJsonString, path = "climate_data.gz")
     println(climateProperties)
 
     var metObsParams = Parameters.readEnvVariables(MetObsParameter)
     val metObsData = dmiClient.getClimateData(metObsParams)
     val metObsProperties = Response.getProperties(climateData)
 
+    Gzip.decompress(path = "pandoras_boks")
+
     val metObsJsonString = ujson.write(metObsProperties)
-    Gzip.compress(metObsJsonString, filename = "metobs_data.gz")
+    Gzip.compress(metObsJsonString, path = "metobs_data.gz")
     println(metObsProperties)
+
   }
 }

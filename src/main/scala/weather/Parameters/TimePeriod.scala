@@ -6,6 +6,10 @@ final case class DateInterval(startDate: String, endDate: String)
     extends TimePeriod
 final case class Date(date: String) extends TimePeriod
 
+/* TimePeriod is a type used to determine the either dmi climate parameters
+ * or met-obs parameters. Both of the services have the parameter datetime
+ * which can be defined as an interval between two dates or as a single date.
+ */
 object TimePeriod {
 
   /** Constructs an Option[TimePeriod] with an interval determined by a start
