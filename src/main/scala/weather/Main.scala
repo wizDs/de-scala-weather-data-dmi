@@ -7,7 +7,8 @@ import sttp.client.okhttp.OkHttpSyncBackend
 /** This calls the DmiClient that acquires weather data which is persisted as a
   * Gzip file, controled by the environment variable PATH_DATA. However, if the
   * PATH_DATA is not set, the default path is ./data.gz. Even though the Client
-  * supports both MetObs and ClimateData, this only calls the ClimateData.
+  * supports both MetObs and ClimateData, this only calls the ClimateData due to 
+  * showing a simple example.
   */
 object Main {
 
