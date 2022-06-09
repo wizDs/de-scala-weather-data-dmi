@@ -4,38 +4,29 @@ import scala.annotation.meta.param
 import scala.util.Properties.envOrNone
 import sttp.client.okhttp.OkHttpSyncBackend
 
+/** This calls the DmiClient that acquires whether data which is persisted as a
+  * Gzip file, controled by the environment variable PATH_DATA. However, if the
+  * PATH_DATA is not set, the default path is ./data.gz. Even though the Client
+  * supports both MetObs and ClimateData, this only calls the ClimateData.
+  */
 object Main {
 
-  /** Provides a service for aquiring meteorological data from DMI in order to
-    * get an overview of the weather for some historical period.
-    *
-    * The service saves only the relevant data: "calculatedAt" and "value" from
-    * the PARAMETER_ID
-    */
   def main(args: Array[String]) = {
 
     val apiKey = sys.env.get("API_KEY")
+    val pathData = sys.env.get("PATH_DATA").getOrElse("data.gz")
+    println(pathData)
 
     implicit val backend = OkHttpSyncBackend()
     val dmiClient = new DmiClient(apiKey)
 
-    var climateParams = Parameters.readEnvVariables(ClimateParameter)
+    var climateParams = Parameters.envVariablesToMap(ClimateParameter)
     val climateData = dmiClient.getClimateData(climateParams)
     val climateProperties = Response.getProperties(climateData)
 
     val climateJsonString = ujson.write(climateProperties)
-    Gzip.compress(climateJsonString, path = "climate_data.gz")
+    Gzip.compress(climateJsonString, path = pathData)
     println(climateProperties)
-
-    var metObsParams = Parameters.readEnvVariables(MetObsParameter)
-    val metObsData = dmiClient.getClimateData(metObsParams)
-    val metObsProperties = Response.getProperties(climateData)
-
-    Gzip.decompress(path = "pandoras_boks")
-
-    val metObsJsonString = ujson.write(metObsProperties)
-    Gzip.compress(metObsJsonString, path = "metobs_data.gz")
-    println(metObsProperties)
 
   }
 }

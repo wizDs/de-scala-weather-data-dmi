@@ -1,15 +1,23 @@
 package weather
 import scala.collection.mutable
 
-/** Module for acquiring Dmi parameters via environment variables.
+/** Since all request strings from sttp is implemented as an URI type, which
+  * supports interpolation of a Map of dmi parametername and an assigned value
+  * defined by an environment variable. This module acquires this Map of dmi
+  * parameters and environment variable value, which is interpolated into the
+  * request/URI string.
   */
 object Parameters {
 
-  /** Reads all DmiParameters conditioned whether its ClimateParameter or
-    * MetObsParameter. This is due to having implemented two services in the Dmi
-    * Client
+  /** Gets a Map of dmi parameters and environment variable value, which can be
+    * interpolated into request string in the DmiClient.
+    * @param parameter:
+    *   is a DmiParameter, with two subtypes ClimateParameter and
+    *   MetObsParameter
     */
-  def readEnvVariables(parameter: DmiParameter): Map[String, Option[String]] = {
+  def envVariablesToMap(
+      parameter: DmiParameter
+  ): Map[String, Option[String]] = {
     var params = mutable.Map[String, Option[String]]()
 
     return parameter match {

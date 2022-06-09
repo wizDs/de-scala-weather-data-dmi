@@ -6,14 +6,21 @@ final case class DateInterval(startDate: String, endDate: String)
     extends TimePeriod
 final case class Date(date: String) extends TimePeriod
 
-/* TimePeriod is a type used to determine the either dmi climate parameters
- * or met-obs parameters. Both of the services have the parameter datetime
- * which can be defined as an interval between two dates or as a single date.
- */
+/** TimePeriod is used in both dmi climate parameters and met-obs parameters.
+  * Both of the services have the parameter datetime which can be defined as an
+  * interval between two dates or as a single date. Time Period is implemented
+  * as a algebraic data type because one can use pattern matching for each of
+  * the cases defined in the confluence documentation.
+  */
 object TimePeriod {
 
-  /** Constructs an Option[TimePeriod] with an interval determined by a start
-    * date and end date.
+  /** Constructs an TimePeriod with a start date and an end date. The
+    * constructor follows the cases given in the confluence documentation
+    *
+    * @param startDate
+    *   is the start date of the date interval
+    * @param endDate
+    *   is the end date of the date interval
     */
   def apply(
       startDate: Option[String],
@@ -37,8 +44,10 @@ object TimePeriod {
     }
   }
 
-  /** Constructs an Option[TimePeriod] with an interval determined by a single
-    * date.
+  /** Constructs an a TimePeriod with a single date.
+    *
+    * @param date
+    *   is a single date as a time interval
     */
   def apply(date: Option[String]): Option[TimePeriod] = {
     return date match {

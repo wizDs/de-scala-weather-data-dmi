@@ -2,6 +2,11 @@ package weather
 
 import sttp.client._
 
+/** The client can acquire meteorological data from DMI. The client is designed
+  * using OKHTTP backend and can only make data requests from the server name
+  * https://dmigw.govcloud.dk. The latest service version is v2, which is set to
+  * be the default in this client
+  */
 class DmiClient(
     apiKey: Option[String],
     serviceVersion: String = "v2"
@@ -12,7 +17,7 @@ class DmiClient(
       okhttp.WebSocketHandler
     ]
 ) {
-  assert(apiKey.isDefined, "API key must be defines as an environment variable")
+  assert(apiKey.isDefined, "API key must be defined as an environment variable")
   val serverName = "https://dmigw.govcloud.dk"
 
   def getClimateData(
