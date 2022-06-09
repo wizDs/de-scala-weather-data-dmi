@@ -3,13 +3,15 @@ The purpose of this project is to obtain meteorological data from DMI in order t
 
 DMI has an available REST-API: https://confluence.govcloud.dk/pages/viewpage.action?pageId=26476690
 
-# Quick start (Linux):
-1. clone this repository `git clone https://github.com/wizDs/weather_data_dmi.git`
-2. change directory to cloned repository `cd {path to directory}/weather_data_dmi`
-3. set environment variables, defining the , eg. `source parameters` (for overview look at [ClimateParameterNames.scala](./src/main/scala/weather/ClimateParameterNames.scala) and [Parameters.scala](./src/main/scala/weather/Parameters.scala))
-4. set api key for the dmi services as an environment variable `export API_KEY={your api key}`
-5. set the path where the data  as an environment variable `export PATH_DATA={your desired path}`
-6. run using `sbt run`
+# Quick start (Ubuntu):
+1. install scala build tool `sudo apt-get install sbt`
+2. install java virtual machine 1.8 from following page [Amazon Corretto](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/what-is-corretto-8.html)
+3. clone this repository `git clone https://github.com/wizDs/weather_data_dmi.git`
+4. change directory to cloned repository `cd {path to directory}/weather_data_dmi`
+5. set environment variables, defining the , eg. `source parameters` (for overview look at [ClimateParameterNames.scala](./src/main/scala/weather/ClimateParameterNames.scala) and [Parameters.scala](./src/main/scala/weather/Parameters.scala))
+6. set api key for the dmi services as an environment variable `export API_KEY={your api key}`
+7. set the path where the data  as an environment variable `export PATH_DATA={your desired path}`
+8. run using `sbt run`
 
 
 ## How to define the time period
